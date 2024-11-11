@@ -1,7 +1,7 @@
-class Lojas:
+class Loja:
     def __init__(self, local):
         self.local = local
-        self.funcionarios = [Funcionario]
+        self.funcionarios = []
         self.estoque = []
         self.loja_proxima = None
 
@@ -41,8 +41,9 @@ class Lojas:
         
         for func in funcionarios:
             cargos[f"{func.cargo}"] += 1 
+        
         print(cargos)
-        return cargos
+        
     
     def definir_loja_proxima(self , loja):
         self.loja_proxima = loja
@@ -60,7 +61,9 @@ class Funcionario:
         self.loja = nova_loja
 
     
-class Instrumentos:
+
+    
+class Instrumento:
     def __init__(self, marca, modelo, preco, num_cordas, loja):
         self._marca = marca
         self._modelo = modelo
@@ -69,24 +72,41 @@ class Instrumentos:
         self._loja = loja
     
     @property
-    def _loja(self):
+    def loja(self):
         return self._loja
     
+    @loja.setter
+    def loja(self, loja):
+        self._loja = loja
+
+    
     @property
-    def _marca(self):
+    def marca(self):
         return self._marca
     
+    @marca.setter
+    def marca(self, marca):
+        self._marca = marca
+    
     @property
-    def _modelo(self):
+    def modelo(self):
         return self._modelo
     
+    @modelo.setter
+    def modelo(self, modelo):
+        self._modelo = modelo
+
     @property
-    def _num_cordas(self):
+    def num_cordas(self):
         return self._num_cordas
+    
+    @num_cordas.setter
+    def num_cordas(self, num_cordas):
+        self._num_cordas = num_cordas
 
     
 
-class Guitarra(Instrumentos):
+class Guitarra(Instrumento):
     def __init__(self, marca, modelo, preco, num_cordas, captador, amplificador):
         super().__init__(self, marca, preco, modelo, num_cordas)
     
@@ -94,13 +114,13 @@ class Guitarra(Instrumentos):
         self.amplificador = amplificador
 
 
-class Baixo(Instrumentos):
+class Baixo(Instrumento):
     def __init__(self, marca, modelo, preco, num_cordas, escala):
         super().__init__(self, marca, modelo, preco, num_cordas)
     
         self.escala = escala
 
-class Violão(Instrumentos):
+class Violão(Instrumento):
     def __init__(self, marca, modelo, preco, num_cordas, tipo_madeira):
         super().__init__(self, marca, modelo, preco, num_cordas)
     
